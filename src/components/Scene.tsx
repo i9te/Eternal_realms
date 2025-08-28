@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { OrbitControls } from "@react-three/drei";
@@ -24,3 +25,16 @@ export default function Scene() {
     </Canvas>
   );
 }
+=======
+import { useGLTF, useTexture } from "@react-three/drei";
+
+export default function Crystals() {
+  const { scene } = useGLTF("/assets/crystals/crystals.gltf");
+  // kalau textures terpisah:
+  // const baseColor = useTexture("/assets/crystals/Crystal_MAT_baseColor.png");
+
+  return <primitive object={scene} />;
+}
+
+useGLTF.preload("/assets/crystals/crystals.gltf");
+>>>>>>> Stashed changes

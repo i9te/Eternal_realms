@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: styling global */
+body {
+  @apply bg-gray-900 text-white;
+  margin: 0;
+  font-family: sans-serif;
+}

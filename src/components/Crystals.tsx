@@ -1,11 +1,21 @@
-import { useLoader } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useGLTF, useTexture } from "@react-three/drei";
 
-interface CrystalProps {
-  position?: [number, number, number];
-}
+export default function Crystals(props: any) {
+  const { scene } = useGLTF("/assets/crystals/scene.gltf");
+  const baseColor = useTexture("/assets/crystals/Crystal_MAT_baseColor.png");
+  const emissive = useTexture("/assets/crystals/Crystal_MAT_emissive.png");
+  const normal = useTexture("/assets/crystals/Crystal_MAT_normal.png");
+  const roughness = useTexture("/assets/crystals/Crystal_MAT_metallicRoughness.png");
 
-export function Crystal({ position = [0, 0, 0] }: CrystalProps) {
-  const gltf = useLoader(GLTFLoader, "/assets/crystals/crystal.gltf");
-  return <primitive object={gltf.scene} scale={0.5} position={position} />;
+  scene.traverse((child: any) => {
+    if (child.isMesh) {
+      child.material.map = baseColor;
+      child.material.emissiveMap = emissive;
+      child.material.normalMap = normal;
+      child.material.roughnessMap = roughness;
+      child.material.needsUpdate = true;
+    }
+  });
+
+  return <primitive object={scene} {...props} />;
 }

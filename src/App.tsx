@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import CharacterSelect from "./pages/CharacterSelect";
 import Game from "./pages/Game";
-
 export default function App() {
   return (
     <BrowserRouter>
